@@ -2,14 +2,18 @@ package com.thienantran.service;
 
 import com.thienantran.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+@Component
 public class TransactionService {
 
-    @Autowired
-    private CopyOnWriteArrayList<Transaction> transactions;
+    private final CopyOnWriteArrayList<Transaction> transactions;
+    public TransactionService(CopyOnWriteArrayList<Transaction> transactions) {
+        this.transactions = transactions;
+    }
 
     public Transaction create(Integer amount, String userId, String reference) {
         Transaction transaction = new Transaction(amount, userId, reference);
