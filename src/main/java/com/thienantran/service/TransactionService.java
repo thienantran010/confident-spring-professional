@@ -2,6 +2,7 @@ package com.thienantran.service;
 
 import com.thienantran.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
@@ -11,12 +12,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class TransactionService {
 
     private final CopyOnWriteArrayList<Transaction> transactions;
-    public TransactionService(CopyOnWriteArrayList<Transaction> transactions) {
+    private final String slogan;
+    public TransactionService(CopyOnWriteArrayList<Transaction> transactions, @Value("${bank.slogan}") String slogan) {
         this.transactions = transactions;
+        this.slogan = slogan;
     }
 
     public Transaction create(Integer amount, String userId, String reference) {
-        Transaction transaction = new Transaction(amount, userId, reference);
+        Transaction transaction = new Transaction(amount, userId, reference + slogan);
         transactions.add(transaction);
         return transaction;
     }
