@@ -4,6 +4,7 @@ import com.thienantran.dto.TransactionDto;
 import com.thienantran.dto.UserDto;
 import com.thienantran.model.Transaction;
 import com.thienantran.service.TransactionService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -19,13 +20,13 @@ public class TransactionController {
 
     @GetMapping("/transactions")
     @ResponseBody
-    public CopyOnWriteArrayList<Transaction> getTransactions(@RequestBody UserDto userDto) {
+    public CopyOnWriteArrayList<Transaction> getTransactions(@RequestBody @Valid UserDto userDto) {
         return transactionService.findUserTransactions(userDto.getUserId());
     }
 
     @PostMapping("/transactions")
     @ResponseBody
-    public Transaction postTransaction(@RequestBody TransactionDto transactionDto) {
+    public Transaction postTransaction(@RequestBody @Valid TransactionDto transactionDto) {
         return transactionService.create(transactionDto.getAmount(), transactionDto.getUserId(), transactionDto.getReference());
     }
 }

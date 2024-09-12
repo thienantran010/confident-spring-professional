@@ -1,5 +1,8 @@
 package com.thienantran.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+
 public class TransactionDto {
     public int getAmount() {
         return amount;
@@ -25,6 +28,9 @@ public class TransactionDto {
         this.reference = reference;
     }
 
+    @Min(1)
     private int amount;
+
+    @NotBlank
     private String userId, reference;
 }
