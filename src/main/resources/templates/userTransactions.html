@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Transactions</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>User Transactions</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Amount</th>
+            <th>Timestamp</th>
+            <th>Reference</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over the transactions list -->
+        <tr th:each="transaction : ${transactions}">
+            <td th:text="${transaction.id}"></td>
+            <td th:text="${transaction.userId}"></td>
+            <td th:text="${transaction.amount}"></td>
+            <td th:text="${transaction.timestamp}"></td>
+            <td th:text="${transaction.reference}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<form th:action="@{/transactions/create}" th:object="${createTransactionForm}" method="post" class="mb-4">
+    <div class="form-group">
+        <label for="receivingUserId">Receiving User ID</label>
+        <input type="text" th:field="*{userId}" id="receivingUserId" name="receivingUserId" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" th:field="*{amount}" id="amount" name="amount" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="reference">Reference</label>
+        <input type="text" th:field="*{reference}" id="reference" name="reference" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create Transaction</button>
+</form>
+</body>
+</html>

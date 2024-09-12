@@ -23,10 +23,4 @@ public class TransactionController {
     public CopyOnWriteArrayList<Transaction> getTransactions(@RequestBody @Valid UserDto userDto) {
         return transactionService.findUserTransactions(userDto.getUserId());
     }
-
-    @PostMapping("/transactions")
-    @ResponseBody
-    public Transaction postTransaction(@RequestBody @Valid TransactionDto transactionDto) {
-        return transactionService.create(transactionDto.getAmount(), transactionDto.getUserId(), transactionDto.getReference());
-    }
 }
