@@ -24,8 +24,8 @@ public class TransactionService {
         return transaction;
     }
 
-    public LinkedList<Transaction> findUserTransactions(String userId) {
-        LinkedList<Transaction> userTransactions = new LinkedList<Transaction>();
+    public CopyOnWriteArrayList<Transaction> findUserTransactions(String userId) {
+        CopyOnWriteArrayList<Transaction> userTransactions = new CopyOnWriteArrayList<>();
 
         for (Transaction transaction : transactions) {
             if (transaction.getUserId().equals(userId)) {

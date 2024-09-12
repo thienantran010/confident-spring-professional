@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class TransactionServlet extends HttpServlet{
 
@@ -31,7 +31,7 @@ public class TransactionServlet extends HttpServlet{
             JsonNode jsonNode = objectMapper.readTree(request.getInputStream());
             String userId = jsonNode.path("userId").asText(null);
 
-            LinkedList<Transaction> userTransactions = transactionService.findUserTransactions(userId);
+            CopyOnWriteArrayList<Transaction> userTransactions = transactionService.findUserTransactions(userId);
 
             String json = objectMapper.writeValueAsString(userTransactions);
 
