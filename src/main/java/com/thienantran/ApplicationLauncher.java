@@ -1,7 +1,6 @@
 package com.thienantran;
 
 import com.thienantran.context.ApplicationConfiguration;
-import com.thienantran.web.TransactionServlet;
 import jakarta.servlet.ServletContext;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
